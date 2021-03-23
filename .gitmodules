@@ -1,0 +1,3 @@
+[submodule "ref/yalco-inflearn-graphql-apollo"]
+	path = ref/yalco-inflearn-graphql-apollo
+	url = https://gitlab.com/yalco/yalco-inflearn-graphql-apollo.git
