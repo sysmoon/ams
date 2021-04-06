@@ -1,7 +1,11 @@
 #!/bin/bash
 
-helm upgrade --install postgresql \
+# create namespace
+kubectl create ns postgres
+
+# depoy
+helm upgrade --install postgresql --namespace postgres \
   -f values.yaml \
-  --set postgresqlPassword=caaqwer4321!,postgresqlDatabase=graphql \
+  --set postgresqlPassword=<your-passwd>,postgresqlDatabase=ams \
   --set service.type=LoadBalancer \
-  azure-marketplace/postgresql 
+  azure-marketplace/postgresql
