@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^2.19.0",
+    "axios": "^0.21.1",
     "convert-csv-to-json": "^1.0.0",
     "dotenv": "^8.2.0",
     "graphql": "^15.4.0",

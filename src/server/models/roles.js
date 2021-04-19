@@ -5,12 +5,12 @@ const RolesSchema = new Schema({
   role: {
     type: String
   },
-  job: [{
+  job: {
     type: String,
-  }],
+  },
   requirement: {
     type: String
   }
 });
 
-mongoose.model('role', RolesSchema)
+module.export = mongoose.model('role', RolesSchema);

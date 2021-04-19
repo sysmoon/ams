@@ -1,4 +1,5 @@
-const Schema = moongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const SuppliesSchema = new Schema({
   role: {
@@ -10,4 +11,4 @@ const SuppliesSchema = new Schema({
   }]
 });
 
-mongoose.model('supply', SuppliesSchema)
+module.export = mongoose.model('supply', SuppliesSchema);

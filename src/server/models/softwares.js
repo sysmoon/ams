@@ -17,4 +17,4 @@ const SoftwaresSchema = new Schema({
   }
 });
 
-mongoose.model('software', SoftwaresSchema)
+module.export = mongoose.model('software', SoftwaresSchema);

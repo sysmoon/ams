@@ -30,4 +30,4 @@ const PeoplesSchema = new Schema({
   }
 });
 
-mongoose.model('people', PeoplesSchema)
+module.export = mongoose.model('people', PeoplesSchema);

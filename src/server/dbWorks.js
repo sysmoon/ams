@@ -15,7 +15,7 @@ const dataFiltered = (which, args) => {
     // 페이징
     if (args.page && args.per_page) {
         result = result.slice(
-            (args.page - 1) * args.per_page, 
+            (args.page - 1) * args.per_page,
             args.page * args.per_page)
     }
 
@@ -55,11 +55,11 @@ const dbWorks = {
             return team.id == args.id
         }).map((team) => {
             Object.assign(team, args.input)
-            return team 
+            return team
         })[0]
     },
 
-    getPeople: (args) => dataFiltered('people', args) 
+    getPeople: (args) => dataFiltered('people', args)
         .map((person) => {
             person.tools = [
                 ...dbWorks.getEquipments({used_by: person.role}),
@@ -88,7 +88,7 @@ const dbWorks = {
             return person.id == args.id
         }).map((person) => {
             Object.assign(person, args.input)
-            return person 
+            return person
         })[0]
     },
 
@@ -109,7 +109,7 @@ const dbWorks = {
         return database.equipments.filter((equipment) => {
             return equipment.id == args.id
         }).map((equipment) => {
-            equipment.count += 1 
+            equipment.count += 1
             return equipment
         })[0]
 

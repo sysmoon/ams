@@ -7,7 +7,11 @@ const TeamsSchema = new Schema({
   extension_number: {type: String},
   mascot: {type: String},
   cleaning_duty: {type: String},
-  project: {type: String}
+  project: {type: String},
+  peoples: [{
+    type: Schema.Types.ObjectId,
+    ref: 'people'
+  }]
 });
 
-mongoose.model('team', TeamsSchema)
+module.export = mongoose.model('team', TeamsSchema);

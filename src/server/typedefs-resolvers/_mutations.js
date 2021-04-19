@@ -4,17 +4,17 @@ const typeDefs = gql`
     type Mutation {
         postTeam(input: PostTeamInput!): Team!,
         editTeam(
-            id: ID!,
+            _id: ID!,
             input: PostTeamInput!
         ): Team!
-        deleteTeam(id: ID!): Team!
+        deleteTeam(_id: ID!): Team!
 
         postPerson(input: PostPersonInput): People!,
         editPerson(
-            id: ID!,
+            _id: ID!,
             input: PostPersonInput!
         ): People!
-        deletePerson(id: ID!): People!
+        deletePerson(_id: ID!): People!
 
         postEquipment(
             id: ID!,
@@ -25,6 +25,8 @@ const typeDefs = gql`
         increaseEquipment(
             id: ID!,
         ): Equipment!
+
+        postRole(input: PostRoleInput): RoleInfo!
     }
 `
 

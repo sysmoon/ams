@@ -10,11 +10,11 @@ const EquipmentsSchema = new Schema({
     ref: 'role'
   },
   count: {
-    type: Int
+    type: Number
   },
   new_or_used: {
     type: String
   }
 });
 
-mongoose.model('equipment', EquipmentsSchema)
+module.export = mongoose.model('equipment', EquipmentsSchema);
