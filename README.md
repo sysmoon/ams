@@ -33,6 +33,9 @@ Route53 Record 에서 해당 도메인 정보와 등록된 레코드 정보 확�
 ## postgresql
 [postgresql install guide](infra/postgresql/README.md)
 
+## redis
+[redis install guide](infra/redis/README.md)
+
 ## graphql
 
 ### Souce Structure
@@ -252,10 +255,11 @@ src/server/models
 
 #### typedef/resolvers
 DB Model 별 필요한 typedef/resolvers 를 파일 모듈로 별도 관리하여 유지보수 효율성 제공
+graphql schema 에 대한 query/mutaion 샘플 테스트는 각 typdef/resolvers 모듈 파일 최하단에 저장/관리
 
-- path: src/server/typedefs-resolvers
-- graphql 명세에서 사용될 데이터 스키마 정의
-- sample typedef (src/server/typedef-resolvers/teams.js)
+* path: src/server/typedefs-resolvers
+* graphql 명세에서 사용될 데이터 스키마 정의
+* sample typedef (src/server/typedef-resolvers/teams.js)
 
 
 ```
