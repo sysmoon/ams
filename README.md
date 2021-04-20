@@ -16,8 +16,10 @@ GraphQL 주요 기능에 대한 PoC 검증을 위한 아키텍처를 설계합�
 
 # Setup
 ## mongodb
+추가예정
 
 ## postgresql
+추가예정
 
 ## graphql
 
