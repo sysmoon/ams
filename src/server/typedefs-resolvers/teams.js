@@ -1,5 +1,5 @@
 const { gql } = require('apollo-server')
-const dbWorks = require('../dbWorks.js')
+// const dbWorks = require('../dbWorks.js')
 const mongodbWorks = require('../mongodbWorks.js')
 
 const typeDefs = gql`

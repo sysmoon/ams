@@ -1,0 +1,47 @@
+# github
+git clone https://github.com/Azure/kubernetes-hackfest
+
+# pre-define
+CLUSTERNAME=prl-kc-k8s-istiobooks
+RGNAME=prl-kc-aks-rg
+K8SVERSION=1.17.13
+APPID=******
+LOCATION=koreacentral
+NODETYPE=Standard_B4ms
+
+# view subscription
+az account list
+
+# show account
+az account show
+
+# create spn (road-learner-spn)
+# az ad sp create-for-rbac --name road-learner-spn --skip-assignment
+# "appId": "****"
+# "password": "*****"
+# "tenant": "******"
+
+# check available aks version
+az aks get-versions -l $LOCATION --output table
+
+# Create AKS Cluster
+az aks create -n $CLUSTERNAME -g $RGNAME -s $NODETYPE \
+--kubernetes-version $K8SVERSION \
+--service-principal $APPID \
+--client-secret $CLIENTSECRET \
+--generate-ssh-keys -l $LOCATION \
+--node-count 3 \
+--no-wait
+
+# verify aks cluster status
+az aks list -o table
+
+# get credential
+az aks get-credentials -n $CLUSTERNAME -g $RGNAME
+# az aks get-credentials --resource-group prl-kc-aks-rg --name prl-kc-k8s-istiobooks --context istiobooks -f istiobooks.conf
+
+# check cluster info
+kubectl cluster-info
+
+# uninstall
+# az aks delete --name prl-kc-k8s-istiobooks --resource-group prl-kc-aks-rg --no-wait

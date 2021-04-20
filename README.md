@@ -15,11 +15,23 @@ GraphQL 주요 기능에 대한 PoC 검증을 위한 아키텍처를 설계합�
 ![GraphQL PoC Architecture](imgs/architecture_poc.png)
 
 # Setup
+
+## Domain
+* Route53 NS 등록 (moonid.co.kr)
+* domain
+  - mongodb.moonid.co.kr
+  - postgres.moonid.co.kr
+
+Route53 Record 에서 해당 도메인 정보와 등록된 레코드 정보 확인 가능합니다.
+
+## AKS
+[AKS install guide](infra/aks/install.azcli)
+
 ## mongodb
-추가예정
+[mongodb install guide](infra/mongodb/README.md)
 
 ## postgresql
-추가예정
+[postgresql install guide](infra/postgresql/README.md)
 
 ## graphql
 
@@ -67,22 +79,13 @@ ams
 
 #### json server (restapi)
 * API flow
-Client -> API Gateway -> graphql server -> json server(restapi)
 
-graphql server 에서 3rd party restapi 서버와 연동하여 relay 하기 위해 json server(restapi) 를 구축합니다.
-json server는 json 파일 기반의 DB를 이용하여 쉽게 restapi 서비스 제공이 가능합니다.
+client -> api-gateway -> graphql-server -> json-server(restapi)
 
-* run
-```
-cd /src/json-server
-npm start
-```
+graphql server 에서 3rd party restapi 와 연동하기 위해 json-server 를 구축/활용 합니다. json-server는 json 파일 기반의 DB를 이용하여 쉽게 restapi 서비스 제공이 가능합니다.
 
-json server 실행후, 브라우저를 통해 restapi 테스트가 가능합니다. (http://localhost:5000/)
+* DB(db.json) structure
 
-* DB(db.json) 구조
-* path: /src/json-server/db.json
-* db.json 내용
 ```
        │ File: db.json
 ───────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -128,6 +131,18 @@ json server 실행후, 브라우저를 통해 restapi 테스트가 가능합니�
   40   │ }
 ```
 
+* run
+
+```
+cd /src/json-server
+npm start
+```
+
+* connection test
+
+json server 실행후, 브라우저를 통해 restapi 테스트가 가능합니다. (http://localhost:5000/)
+
+
 #### graphql server
 
 * graphql 개발에 필요한 nodejs 패키지 설치
@@ -165,12 +180,35 @@ npm install
   20   │   }
   21   │ }
 ```
-- run
+
+* env
+nodejs 실행에 필요한 환경변수는 src/server/.env 파알에 관리하고, dotenv 모듈을 통해 import 합니다. 향후 CI/CD 과정에서 config/sercet 설정을 통해 관리가 필요합니다.
+
 ```
-npm start
+       │ File: .env
+───────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   1   │ MONGO_URI=mongodb://systest:qwer4321!@mongodb.moonid.co.kr:27017/ams
 ```
 
-Apollo 서버 실행후, graphql playground (http://localhost:4000/) 브라우저 접속 통해 테스트 가능
+
+* run
+```
+npm start
+
+(node:31540) DeprecationWarning: current URL string parser is deprecated, and will be removed in a future version. To use the new parser, pass option { useNewUrlParser: true } to MongoClient.connect.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:31540) [MONGODB DRIVER] Warning: Current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
+🚀  Server ready at http://localhost:4000/
+Connected to MongoLab instance.
+```
+
+* conneciton test
+
+graphql-server 를 실행하면, apollo 에서 기본적으로 제공하는 graphql playground 를 통해 graphql query/mutaion 테스트가 가능합니다. 아래 주소로 브라우저 접속하여 테스트 가능합니다.
+
+```
+http://localhost:4000
+```
 
 
 #### model
@@ -308,11 +346,12 @@ const dbWorks = {
 
 ## Frontend
 
-- framework: react + apollo
-- run
+graphql PoC 의 경우 apollo playground 통해서 주요 feasability 체크.
+frontend 개발은 향후, 프로젝트 진행 과정에서 적절한 framework 검토/선택.
+
+* framework: react + apollo
+* run
 ```
 cd /src/client
 npm start
 ```
-
-http://localhost:3000 브라우저 접속 통해 테스트 가능
