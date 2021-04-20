@@ -1,5 +1,6 @@
 # Introduce
-CCS 공통모듈을 위한 AMS (API Management Service) Framework(/w GraphQL) 개발.
+CCS 공통모듈을 위한 AMS (API Management Service) Framework(/w GraphQL) 개발하고,
+GraphQL 주요 기능에 대한 PoC 검증을 위한 아키텍처를 설계합니다.
 
 # Features
 - 멀티프로토콜을 위한 API 지원 (REST, GraphQL, gRPC ..)
@@ -7,6 +8,11 @@ CCS 공통모듈을 위한 AMS (API Management Service) Framework(/w GraphQL) �
 - Legacy REST API 연동 (GraphQL Relay)
 - API 명세서 (API Document)
 - 보안 (인증/권한/접근제어)
+
+# Architecture
+[Netflix Beyond API 기술세미나 자료 참고](docs/Netflix_Beyond_API.pptx)
+
+![GraphQL PoC Architecture](imgs/architecture_poc.png)
 
 # Setup
 ## mongodb
